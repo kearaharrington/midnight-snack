@@ -2,6 +2,7 @@
 const die = document.getElementById('roll');
 const rollButton = document.getElementById('die-button');
 const rollDisplay = document.getElementById('number');
+const journeyButtons = document.getElementById('game-buttons')
 let rollResult;
 
 // ====================== PAINT INTIAL SCREEN ======================= //
@@ -21,11 +22,21 @@ let player = {
 
 // ====================== GAME PROCESSES ======================= //
 
-// function to roll 20 sided die
+// roll 20 sided die
 function rollDie() {
     rollResult = 1 + Math.floor(Math.random() * 20);
     rollDisplay.textContent = rollResult;
-    console.log(rollResult)
+    // return rollResult;
+    console.log(rollResult);
 }
 
-// rollDie();
+// sneak past kids' rooms
+function sneak() {
+    
+}
+
+// go upstairs
+
+// get snack
+
+// reset back to start
