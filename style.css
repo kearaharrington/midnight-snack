@@ -1,0 +1,30 @@
+#container {
+    outline: 1px solid black;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 5px;
+    display: grid;
+    grid-gap: 0;
+    grid-template-rows: 50px 200px 75px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "title title title"
+                        "game-area game-area game-area"
+                        "player-info player-info roll"
+}
+
+#title {
+    text-align: center;
+    grid-area: title;
+}
+
+#game-area {
+    grid-area: game-area;
+}
+
+#player-info {
+    grid-area: player-info;
+}
+
+#roll {
+    grid-area: roll;
+}
