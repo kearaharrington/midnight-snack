@@ -9,7 +9,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "title title title"
                         "game-area game-area game-area"
-                        "player-info player-info roll"
+                        "start-reset player-info roll"
 }
 
 #title {
@@ -25,6 +25,13 @@
     grid-area: player-info;
 }
 
+#start-reset-buttons {
+    text-align: center;
+    align-self: flex-end;
+    grid-area: start-reset;
+}
+
 #roll {
+    text-align: center;
     grid-area: roll;
 }
