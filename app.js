@@ -1,5 +1,7 @@
 // GLOBAL DOM / VARIABLES
 const die = document.getElementById('roll');
+const startButton = document.getElementById('start-button');
+const resetButton = document.getElementById('reset-button');
 const rollButton = document.getElementById('die-button');
 const rollDisplay = document.getElementById('number');
 const journeyButtons = document.getElementById('game-buttons');
@@ -9,7 +11,9 @@ let rollResult;
 // ====================== PAINT INTIAL SCREEN ======================= //
 
 // EVENT LISTENERS
-rollButton.addEventListener("click", rollDie);
+rollButton.addEventListener('click', rollDie);
+startButton.addEventListener('click', start);
+resetButton.addEventListener('click', resetGame);
 
 // ====================== ENTITIES ======================= //
 class Player {
@@ -28,6 +32,7 @@ class Player {
 
 let player1 = new Player();
 
+// Function to show player stats on page
 function displayPlayerInfo() {
     let life = document.createElement('p');
     playerInfo.appendChild(life);
@@ -64,6 +69,21 @@ displayPlayerInfo();
 
 // ====================== GAME PROCESSES ======================= //
 
+// start game
+function start() {
+    let sneakButton = document.createElement('button');
+    sneakButton.setAttribute('id', 'sneak');
+    let sneak1 = document.getElementById('sneak');
+    function newButton() {
+        if (!sneak1) {
+        journeyButtons.appendChild(sneakButton);
+        }
+    }
+    newButton();
+    sneakButton.innerText = 'sneak';
+    sneakButton.addEventListener('click', sneak);
+}
+
 // roll 20 sided die
 function rollDie() {
     rollResult = 1 + Math.floor(Math.random() * 20);
@@ -74,7 +94,11 @@ function rollDie() {
 
 // sneak past kids' rooms
 function sneak() {
-    
+    rollDie();
+    let gameButtons = document.getElementById('game-buttons');
+    if (gameButtons.children.length > -1) {
+        gameButtons.remove();
+    }
 };
 
 // go upstairs
@@ -86,3 +110,6 @@ function goUpstairs() {
 
 
 // reset back to start
+function resetGame() {
+
+};

@@ -8,19 +8,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- <div id="images">
+        <img src="hallway-placeholder.png" style="display: none;">
+    </div> -->
     <div id="container">
         <div id="title">
             <h1>Midnight Snack</h1>
         </div>
         <div id="game-area">
-            <div id="background-image"></div>
-            <div id="journey-info"></div>
-            <div id="game-buttons"></div>
+            <div class="game-visuals" id="background-image">
+                <img src="hallway-placeholder.png">
+                <img src="stairs-placeholder.png" style="display: none;">
+            </div>
+            <div class="game-visuals" id="journey-info">
+                <p id="journey-message">It's midnight, you're still up, and you want a midnight snack...</p>
+                <div id="game-buttons"></div>
+            </div>
         </div>
         <div id="player-info"></div>
         <div id="start-reset-buttons">
-            <button>Start</button> <br>
-            <button>Reset</button>
+            <button id="start-button">Start</button> <br>
+            <button id="reset-button">Reset</button>
         </div>
         <div id="roll">
             <div class="button" id="die">

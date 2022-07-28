@@ -5,11 +5,15 @@
     padding: 5px;
     display: grid;
     grid-gap: 0;
-    grid-template-rows: 50px 200px 75px;
+    grid-template-rows: 60px 305px 150px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "title title title"
                         "game-area game-area game-area"
                         "start-reset player-info roll"
+}
+
+.game-visuals {
+    position: absolute;
 }
 
 #title {
@@ -19,6 +23,12 @@
 
 #game-area {
     grid-area: game-area;
+}
+
+#journey-info {
+    position: absolute;
+    color: white;
+    z-index: 10;
 }
 
 #player-info {
