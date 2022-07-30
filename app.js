@@ -123,9 +123,12 @@ function sneak() {
         if (roll < 3) {
             user.currentHP = 0;
             user.alive = false;
+            removeButtons();
+            gameText.innerText = 'Game Over: Swarmed by children!!'
             // alert('game over! no snack for you');
         } else if (roll > 2 && roll < 10) {
             user.stealth -= 25;
+            gameText.innerText = "Phew! The kids are still sound asleep. Now time to go down the stairs... watch out for the cats...";
         }
     };
     score1(player1);
@@ -133,8 +136,6 @@ function sneak() {
 
     hallway.style.display = 'none';
     stairs.style.display = 'inline';
-    
-    gameText.innerText = "Phew! The kids are still sound asleep. Now time to go down the stairs... watch out for the cats...";
     
     sneakButton.style.display = 'none';
     stairsButton.style.display = 'block';
@@ -148,18 +149,22 @@ function goUpstairs() {
         if (roll < 3) {
             user.currentHP = 0;
             user.alive = false;
+            removeButtons();
+            gameText.innerText = 'Game Over: You tripped over your cat and fell down the stairs!!';
         } else if (roll > 2 && roll < 10) {
             user.stealth -= 25;
+            gameText.innerText = "You made it to the kitchen!";
+        } else {
+            gameText.innerText = "You made it to the kitchen!";
         }
     }
     score(player1);
+    displayPlayerInfo();
     
     hallway.style.display = 'none';
     stairs.style.display = 'none';
     kitchen.style.display = 'inline';
     
-    gameText.innerText = "You made it to the kitchen!";
-
     stairsButton.style.display = 'none';
     kitchenButton.style.display = 'block';
     kitchenButton.addEventListener('click', getSnack);
@@ -202,6 +207,7 @@ function getSnack() {
         }
     }
     score(player1);
+    displayPlayerInfo();
 
     kitchenButton.style.display = 'none'
 };

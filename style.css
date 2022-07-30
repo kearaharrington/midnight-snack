@@ -12,17 +12,33 @@
                         "start-reset player-info roll"
 }
 
-.game-visuals {
+#game-area {
+    position: relative;
+    height: 300px;
+    width: 500px;
+    grid-area: game-area;
+}
+
+#canvas {
+    height: 100%;
+    width: 100%;
+}
+
+#background-image {
     position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#journey-info {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #title {
     text-align: center;
     grid-area: title;
-}
-
-#game-area {
-    grid-area: game-area;
 }
 
 #journey-info {
