@@ -5,11 +5,18 @@ const resetButton = document.getElementById('reset-button');
 const rollButton = document.getElementById('die-button');
 const rollDisplay = document.getElementById('number');
 const journeyButtons = document.getElementById('game-buttons');
+const sneakButton = document.getElementById('sneak');
+const stairsButton = document.getElementById('downstairs');
+const kitchenButton = document.getElementById('make-snack');
 const playerInfo = document.getElementById('player-info');
 const hallway = document.getElementById('hallway');
 const stairs = document.getElementById('stairs');
 const kitchen = document.getElementById('kitchen');
 const gameText = document.getElementById('journey-message');
+const life = document.getElementById('life');
+const hp = document.getElementById('hp');
+const stealth = document.getElementById('stealth');
+const eat = document.getElementById('eaten');
 let rollResult;
 
 // ====================== PAINT INTIAL SCREEN ======================= //
@@ -38,35 +45,17 @@ let player1 = new Player();
 
 // Function to show player stats on page
 function displayPlayerInfo() {
-    let life = document.createElement('p');
-    playerInfo.appendChild(life);
+    let life = document.getElementById('life');
     life.innerText = `Alive: ${player1.alive}`;
 
-    let hp = document.createElement('p');
-    playerInfo.appendChild(hp);
-    // hp.setAttribute('id', 'HP');
-    // let playerHp = document.getElementById('HP');
+    let hp = document.getElementById('hp');
     hp.innerText = `HP: ${player1.currentHP}`;
     
-    let stealth = document.createElement('p');
-    playerInfo.appendChild(stealth);
-    // stealth.setAttribute('id', 'stealth');
-    // let stealthValue = document.getElementById('stealth');
+    let stealth = document.getElementById('stealth');
     stealth.innerText = `Stealth: ${player1.stealth}`;
 
-    let eat = document.createElement('p');
-    playerInfo.appendChild(eat);
-    // eat.setAttribute('id', 'snacked');
-    playerInfo.appendChild(eat);
-
-    function snacked() {
-        if (player1.hasEaten) {
-            eat.innerText = 'Status: Successfully snacked!'
-        } else {
-            eat.innerText = 'Status: Still hungry...'
-        }
-    }
-    snacked();
+    let eat = document.getElementById('eaten');
+    eat.innerText = 'Status: Still hungry...'
 };
 
 displayPlayerInfo();
@@ -74,28 +63,33 @@ displayPlayerInfo();
 // ====================== GAME PROCESSES ======================= //
 
 // start game
+// function start() {
+//     let sneakButton = document.createElement('button');
+//     sneakButton.setAttribute('id', 'sneak');
+//     let sneak1 = document.getElementById('sneak');
+//     function newButton() {
+//         if (!sneak1) {
+//         journeyButtons.appendChild(sneakButton);
+//         }
+//     }
+//     newButton();
+//     sneakButton.innerText = 'sneak past the bedrooms';
+//     sneakButton.addEventListener('click', sneak);
+// }
+
 function start() {
-    let sneakButton = document.createElement('button');
-    sneakButton.setAttribute('id', 'sneak');
-    let sneak1 = document.getElementById('sneak');
-    function newButton() {
-        if (!sneak1) {
-        journeyButtons.appendChild(sneakButton);
-        }
-    }
-    newButton();
+    sneakButton.style.display = 'block'
     sneakButton.innerText = 'sneak past the bedrooms';
     sneakButton.addEventListener('click', sneak);
 }
 
 // remove existing buttons in the game-area div
 function removeButtons() {
-    let gameButtons = document.getElementById('game-buttons');
-    if (gameButtons.children.length > 0) {
-        // if (gameButtons.children.length === 0) { break; }
-        gameButtons.remove();
+    if (journeyButtons.children.length > 0) {
+        journeyButtons.remove();
     } 
 }
+
 
 // add new buttons
 
@@ -109,44 +103,98 @@ function newButton(theButtonId, buttonCreate) {
 function rollDie() {
     rollResult = 1 + Math.floor(Math.random() * 20);
     rollDisplay.textContent = rollResult;
-    // return rollResult;
-    console.log(rollResult);
+    return rollResult;
+    // console.log(rollResult);
 };
 
 // sneak past kids' rooms
 function sneak() {
-    rollDie();
-    removeButtons();
+    let roll = rollDie();
+    function score1(user) {
+        if (roll < 3) {
+            user.currentHP = 0;
+            user.alive = false;
+            // alert('game over! no snack for you');
+        } else if (roll > 2 && roll < 10) {
+            user.stealth -= 25;
+        }
+    };
+    score1(player1);
+    displayPlayerInfo();
+
     hallway.style.display = 'none';
     stairs.style.display = 'inline';
+    
     gameText.innerText = "Phew! The kids are still sound asleep. Now time to go down the stairs... watch out for the cats...";
-    let stairsButton = document.createElement('button');
-    stairsButton.setAttribute('id', 'downstairs');
-    let stairs1 = document.getElementById('downstairs');
-    // function newButton() {
-    //     if (!stairs1) {
-    //     journeyButtons.appendChild(stairsButton);
-    //     }
-    // }
-    // newButton();
-    newButton(stairs1,stairsButton);
-    stairsButton.innerText = 'proceed down the stairs';
+    
+    sneakButton.style.display = 'none';
+    stairsButton.style.display = 'block';
     stairsButton.addEventListener('click', goUpstairs);
 };
 
 // go upstairs
 function goUpstairs() {
-    rollDie();
+    let roll = rollDie();
+    function score(user) {
+        if (roll < 3) {
+            user.currentHP = 0;
+            user.alive = false;
+        } else if (roll > 2 && roll < 10) {
+            user.stealth -= 25;
+        }
+    }
+    score(player1);
+    
     hallway.style.display = 'none';
     stairs.style.display = 'none';
     kitchen.style.display = 'inline';
-    gameText.innerText = "You made it down the stairs. Onward to the kitchen!"
     
+    gameText.innerText = "You made it to the kitchen!";
+
+    stairsButton.style.display = 'none';
+    kitchenButton.style.display = 'block';
+    kitchenButton.addEventListener('click', getSnack);
 };
+
+// kids ate snacks
+function ohNo(user) {
+    if (user.stealth <=25) {
+        gameText.innerText = 'Your kids beat you to the kitchen! All the snacks are gone!'
+    } else {
+        user.hasEaten = true;
+        snacked();
+    }
+}
+
+// you ate snack
+function snacked() {
+    if (player1.hasEaten) {
+        gameText.innerText = 'success! you got your snack!'
+        eat.innerText = 'Status: Sated and sleeeeepy'
+    }
+}
+
 
 // get snack
 function getSnack() {
+    let roll = rollDie();
+    function score(user) {
+        if (roll < 3) {
+            user.currentHP = 0;
+            user.alive = false;
+            removeButtons();
+            gameText.innerText = 'Game Over: You burnt your house down!!'
+        } else if (roll > 2 && roll < 10) {
+            user.stealth -= 25;
+            ohNo(user);
+        } else if (roll >= 10) {
+            user.hasEaten = true;
+            snacked();
+        }
+    }
+    score(player1);
 
+    kitchenButton.style.display = 'none'
 };
 
 // reset back to start
