@@ -37,7 +37,7 @@
 
 #start-reset-buttons {
     text-align: center;
-    align-self: flex-end;
+    /* align-self: flex-end; */
     grid-area: start-reset;
 }
 

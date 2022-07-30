@@ -1,22 +1,29 @@
 // GLOBAL DOM / VARIABLES
 const die = document.getElementById('roll');
-const startButton = document.getElementById('start-button');
-const resetButton = document.getElementById('reset-button');
 const rollButton = document.getElementById('die-button');
 const rollDisplay = document.getElementById('number');
+
+const startButton = document.getElementById('start-button');
+const resetButton = document.getElementById('reset-button');
+
 const journeyButtons = document.getElementById('game-buttons');
 const sneakButton = document.getElementById('sneak');
 const stairsButton = document.getElementById('downstairs');
 const kitchenButton = document.getElementById('make-snack');
+
 const playerInfo = document.getElementById('player-info');
+
 const hallway = document.getElementById('hallway');
 const stairs = document.getElementById('stairs');
 const kitchen = document.getElementById('kitchen');
+
 const gameText = document.getElementById('journey-message');
+
 const life = document.getElementById('life');
 const hp = document.getElementById('hp');
 const stealth = document.getElementById('stealth');
 const eat = document.getElementById('eaten');
+
 let rollResult;
 
 // ====================== PAINT INTIAL SCREEN ======================= //
@@ -81,6 +88,8 @@ function start() {
     sneakButton.style.display = 'block'
     sneakButton.innerText = 'sneak past the bedrooms';
     sneakButton.addEventListener('click', sneak);
+    startButton.style.display = 'none';
+    resetButton.style.display = 'block';
 }
 
 // remove existing buttons in the game-area div
