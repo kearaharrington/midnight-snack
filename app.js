@@ -1,4 +1,14 @@
 // GLOBAL DOM / VARIABLES
+// const canvas = document.getElementById('canvas'); // sprite/canvas
+// const ctx = canvas.getContext('2d'); // sprite
+// const spriteSheet = new Image();
+// spriteSheet.src = 'character-two.png';
+// spriteSheet.onload = loadImages;
+// let cols = 4;
+// let rows = 4;
+// let totalFrames = 16;
+// let currentFrame = 0;
+
 const die = document.getElementById('roll');
 const rollButton = document.getElementById('die-button');
 const rollDisplay = document.getElementById('number');
@@ -25,29 +35,55 @@ const stealth = document.getElementById('stealth');
 const eat = document.getElementById('eaten');
 
 let rollResult;
+// let rollResult = rollDie();
 
 // ====================== PAINT INTIAL SCREEN ======================= //
+// window.addEventListener('DOMContentLoaded', function() {
+//     const runGame = setInterval(gameLoop, 60); // 60 milliseconds
+// });
+// canvas.setAttribute('height', getComputedStyle(canvas)['height']);
+// canvas.setAttribute('width', getComputedStyle(canvas)['width']);
+
+// function gameLoop() {
+//     if (player1.alive) {
+//         player1.render();
+//     }
+// };
 
 // EVENT LISTENERS
 rollButton.addEventListener('click', rollDie);
 startButton.addEventListener('click', start);
+// startButton.addEventListener('click', (e) => {
+//     player1.render();
+// });
 resetButton.addEventListener('click', resetGame);
 
 // ====================== ENTITIES ======================= //
 class Player {
-    // constructor(playerName) {
+    // constructor(x, y, image, width, height) {
+        // this.name = playerName;
+        // this.class = '';
     constructor() {
-        // this.name = playerName,
-        // this.class = '',
-        this.maxHP = 100,
-        this.currentHP = 100,
-        this.maxStealth = 100,
-        this.stealth = 100,
-        this.hasEaten = false,
-        this.alive = true
+        // this.x = x;
+        // this.y = y;
+        // this.image = image;
+        // this.width = width;
+        // this.height = height;
+        this.maxHP = 100;
+        this.currentHP = 100;
+        this.maxStealth = 100;
+        this.stealth = 100;
+        this.hasEaten = false;
+        this.alive = true;
+
+        // this.render = function() {
+        //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //     ctx.drawImage(this.image, 0, 0, 64, 64, this.x, this.y, this.width, this.height);
+        // };
     };
 };
 
+// let player1 = new Player(250, 150, spriteSheet, 64, 64);
 let player1 = new Player();
 
 // Function to show player stats on page
@@ -70,26 +106,17 @@ displayPlayerInfo();
 // ====================== GAME PROCESSES ======================= //
 
 // start game
-// function start() {
-//     let sneakButton = document.createElement('button');
-//     sneakButton.setAttribute('id', 'sneak');
-//     let sneak1 = document.getElementById('sneak');
-//     function newButton() {
-//         if (!sneak1) {
-//         journeyButtons.appendChild(sneakButton);
-//         }
-//     }
-//     newButton();
-//     sneakButton.innerText = 'sneak past the bedrooms';
-//     sneakButton.addEventListener('click', sneak);
-// }
-
 function start() {
-    sneakButton.style.display = 'block'
+    sneakButton.style.display = 'block';
     sneakButton.innerText = 'sneak past the bedrooms';
     sneakButton.addEventListener('click', sneak);
     startButton.style.display = 'none';
     resetButton.style.display = 'block';
+
+    // player1.render();
+    // player1.render = function() {
+    //     ctx.drawImage(imageName, 0, 0, 64, 64, 250, 150, 64, 64)
+    // }
 }
 
 // remove existing buttons in the game-area div
@@ -125,7 +152,6 @@ function sneak() {
             user.alive = false;
             removeButtons();
             gameText.innerText = 'Game Over: Swarmed by children!!'
-            // alert('game over! no snack for you');
         } else if (roll > 2 && roll < 10) {
             user.stealth -= 25;
             gameText.innerText = "Phew! The kids are still sound asleep. Now time to go down the stairs... watch out for the cats...";
@@ -214,9 +240,28 @@ function getSnack() {
 
 // reset back to start
 function resetGame() {
-    // removeButtons();
     gameText.innerText = "It's midnight, you're still up, and you want a midnight snack... don't wake up the kids!";
+    
+    startButton.style.display = 'block';
+    resetButton.style.display = 'none';
+    sneakButton.style.display = 'none';
+    stairsButton.style.display = 'none';
+    kitchenButton.style.display = 'none';
+
     hallway.style.display = 'inline';
     stairs.style.display = 'none';
     kitchen.style.display = 'none';
+
+    rollDisplay.innerText = '1';
+
+    player1.maxHP = 100;
+    player1.currentHP = 100;
+    player1.maxStealth = 100;
+    player1.stealth = 100;
+    player1.hasEaten = false;
+    player1.alive = true;
+
+    displayPlayerInfo();
+
+    // sneak, goUpstairs, and getSnack all contain the removeButtons function which is causing the start button not to generate the sneak button. may need to remove that function entirely
 };

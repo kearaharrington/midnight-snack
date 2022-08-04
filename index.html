@@ -8,30 +8,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- <div id="images">
-        <img src="hallway-placeholder.png" style="display: none;">
-    </div> -->
     <div id="container">
         <div id="title">
             <h1>Midnight Snack</h1>
         </div>
         <div id="game-area">
-            <canvas id="canvas"></canvas>
+            <!-- <canvas id="canvas"></canvas> -->
             <div class="game-visuals" id="background-image">
                 <img id="hallway" src="hallway-placeholder.png" style="display: inline;">
                 <img id="stairs" src="stairs-placeholder.png" style="display: none;">
                 <img id="kitchen" src="kitchen-placeholder.png" style="display: none;">
             </div>
             <div class="game-visuals" id="journey-info">
-                <p id="journey-message">It's midnight, you're still up, and you want a midnight snack... don't wake up the kids!</p>
+                <p id="journey-message">It's midnight, you're still up, and you want a midnight snack... don't wake up your roommates!</p>
                 <div id="game-buttons">
                     <button id="sneak" style="display: none;">sneak past the bedrooms</button>
-                    <button id="downstairs" style="display: none;">proceed down the stairs</button>
-                    <button id="make-snack" style="display: none;">snack time!</button>
+                    <button id="shoo" style="display: none;">shoo the cat</button>
+                    <button id="downstairs-around" style="display: none;">walk around the cat</button>
+                    <button id="downstairs-over" style="display: none;">step over the cat</button>
+                    <button id="smoke" style="display: none;">smoke first</button>
+                    <button id="burrito" style="display: none;">microwave burrito</button>
+                    <button id="cereal" style="display: none;">cereal</button>
+                    <button id="sushi" style="display: none;">leftover sushi</button>
+                    <button id="continue" style="display: none;">continue</button>
                 </div>
             </div>
         </div>
         <div id="player-info">
+            <!-- <img id="sprite-sheet" src="character-two.png" style="display: none;"> -->
             <p id="life"></p>
             <p id="hp"></p>
             <p id="stealth"></p>
@@ -48,6 +52,6 @@
             </div>
         </div>
     </div>
-    <script src="app.js"></script>
+    <script src="app-1.js"></script>
 </body>
 </html>
