@@ -36,11 +36,12 @@ let hallChoice;
 let stairsChoice;
 let kitchenChoice;
 let stage;
+let pathChosen = false;
 
 // ====================== PAINT INTIAL SCREEN ======================= //
 
 // EVENT LISTENERS
-rollButton.addEventListener('click', outcome);
+rollButton.addEventListener('click', rollOk);
 startButton.addEventListener('click', start);
 resetButton.addEventListener('click', resetGame);
 
@@ -112,94 +113,103 @@ function rollDie() {
     return rollResult;
 };
 
+// function so that you can only roll if you've chosen an option and have not yet rolled
+function rollOk() {
+    if (stage !== 0 && pathChosen === true) {
+        outcome();
+        pathChosen = false;
+    };
+}
+
 function outcome() {
     let roll = rollDie();
     function score(user) {
         // hall options
-        if (stage === 0 && hallChoice === 0 && roll <= 5) {
+        if (stage === 1 && hallChoice === 0 && roll <= 5) {
             user.currentHP = 0;
             gameText.innerText = "Game Over: Swarmed by drunk roommates, you can't make it to the kitchen"
-        } else if (stage === 0 && hallChoice === 0 && roll >= 6 && roll <= 15) {
+        } else if (stage === 1 && hallChoice === 0 && roll >= 6 && roll <= 15) {
             user.stealth -= 25;
             gameText.innerText = "You trip and make a thumping sound. You think you hear a noise coming from behind one of the bedroom doors but you remain alone in the hallway."
-            stageOne();
-        } else if (stage === 0 && hallChoice === 0 && roll >= 16) {
+            stageTwo();
+        } else if (stage === 1 && hallChoice === 0 && roll >= 16) {
             gameText.innerText = "You pass by the bedrooms without making a single sound. Your roommates are still snoozing."
-            stageOne();
-        } else if (stage === 0 && hallChoice === 1 && roll <= 5) {
+            stageTwo();
+        } else if (stage === 1 && hallChoice === 1 && roll <= 5) {
             user.currentHP -= 25;
             gameText.innerText = "You stumble over your cat and fall down as it runs for the stairs. You think you hear a rustling coming from one of the bedrooms but no one comes out."
-            stageOne();
-        } else if (stage === 0 && hallChoice === 1 && roll >= 6 && roll <= 15) {
+            stageTwo();
+        } else if (stage === 1 && hallChoice === 1 && roll >= 6 && roll <= 15) {
             user.stealth -= 25;
             gameText.innerText = "You scare your cat and it jumps up, runs for the stairs, slides on the rug that you never put a non-slip pad under, and smacks headfirst into the wall."
-            stageOne();
-        } else if (stage === 0 && hallChoice === 1 && roll >= 16) {
+            stageTwo();
+        } else if (stage === 1 && hallChoice === 1 && roll >= 16) {
             gameText.innerText = "Your cat pads away and you quietly make it over to the top of the stairs."
-            stageOne();
-        } else if (stage === 1 && stairsChoice === 0 && roll <= 5) { // stairs options
+            stageTwo();
+        } else if (stage === 2 && stairsChoice === 0 && roll <= 5) { // stairs options
             user.currentHP = 0;
             user.alive = false;
             gameText.innerText = "Game Over: You tripped over your cat and fell down the stairs!!";
-        } else if (stage === 1 && stairsChoice === 0 && roll >= 6 && roll <= 15) {
+        } else if (stage === 2 && stairsChoice === 0 && roll >= 6 && roll <= 15) {
             user.currentHP -= 25;
             user.stealth -= 25;
             gameText.innerText = "You move around your cat and overshoot the next step, stumbling down the stairs."
-            stageTwo();
-        } else if (stage === 1 && stairsChoice === 0 && roll >= 16) {
+            stageThree();
+        } else if (stage === 2 && stairsChoice === 0 && roll >= 16) {
             gameText.innerText = "You make it down the stairs and head towards the kitchen."
-            stageTwo();
-        } else if (stage === 1 && stairsChoice === 1 && roll <= 5) {
+            stageThree();
+        } else if (stage === 2 && stairsChoice === 1 && roll <= 5) {
             user.currentHP = 0;
             user.alive = false;
             gameText.innerText = "Game Over: You spook your cat and it pounces on your legs, scratching and biting. You can't maintain your balance! You trip and tumble down the stairs to your death."
-        } else if (stage === 1 && stairsChoice === 1 && roll >= 6 && roll <= 15) {
+        } else if (stage === 2 && stairsChoice === 1 && roll >= 6 && roll <= 15) {
             user.currentHP -= 25;
             user.stealth -= 25;
             gameText.innerText = "You spook your cat and it pounces on your legs, scratching and biting. You can't maintain your balance! You yelp as you trip but you manage not to fall."
-            stageTwo();
-        } else if (stage === 1 && stairsChoice === 1 && roll >= 16) {
+            stageThree();
+        } else if (stage === 2 && stairsChoice === 1 && roll >= 16) {
             gameText.innerText = "You make it down the stairs and head towards the kitchen"
-            stageTwo();
-        } else if (stage === 2 && kitchenChoice === 0 && roll <=5) { // kitchen - smoke first
+            stageThree();
+        } else if (stage === 3 && kitchenChoice === 0 && roll <=5) { // kitchen - smoke first
             user.currentHP = 0;
             user.alive = false;
             gameText.innerText = "Game Over: You've set your house on fire! No snack! And you're dead!"
-        } else if (stage === 2 && kitchenChoice === 0 && roll >= 6 && roll <= 15) {
+        } else if (stage === 3 && kitchenChoice === 0 && roll >= 6 && roll <= 15) {
             gameText.innerText = "Game Over: You fell asleep petting your cat and giving it treats. You forgot you came to the kitchen for your own snack."
-        } else if (stage === 2 && kitchenChoice === 0 && roll >= 16) {
-            user.hasEaten = true;
-            snacked();
-        } else if (stage === 2 && kitchenChoice === 1 && roll <=5) { // kitchen - microwave burrito
+        } else if (stage === 3 && kitchenChoice === 0 && roll >= 16) {
+            user.currentHP = 100;
+            gameText.innerText = "Ok ok ok, back to choosing your snack..."
+            stageThreeSmoked();
+        } else if (stage === 3 && kitchenChoice === 1 && roll <=5) { // kitchen - microwave burrito
             user.currentHP = 0;
             user.alive = false;
             gameText.innerText = "Game Over: You left the foil on! The entire house exploded!"
-        } else if (stage === 2 && kitchenChoice === 1 && roll >= 6 && roll <= 15) {
+        } else if (stage === 3 && kitchenChoice === 1 && roll >= 6 && roll <= 15) {
             user.currentHP -= 15;
             gameText.innerText = "Aww you burnt the burrito... still good though"
-            stageThree();
-        } else if (stage === 2 && kitchenChoice === 1 && roll >= 16) {
+            stageFour();
+        } else if (stage === 3 && kitchenChoice === 1 && roll >= 16) {
             user.hasEaten = true;
             snacked();
-        } else if (stage === 2 && kitchenChoice === 2 && roll <=5) { // kitchen - cereal
+        } else if (stage === 3 && kitchenChoice === 2 && roll <=5) { // kitchen - cereal
             user.currentHP = 0;
             user.alive = false;
             gameText.innerText = "Game Over: You eat so fast you choke on your cereal. Death."
-        } else if (stage === 2 && kitchenChoice === 2 && roll >= 6 && roll <= 15) {
+        } else if (stage === 3 && kitchenChoice === 2 && roll >= 6 && roll <= 15) {
             user.stealth -= 50;
             gameText.innerText = "Uh oh! You drop the cereal bowl and it shatters, little pieces clattering all over the floor..."
-            stageThree();
-        } else if (stage === 2 && kitchenChoice === 2 && roll >= 16) {
+            stageFour();
+        } else if (stage === 3 && kitchenChoice === 2 && roll >= 16) {
             user.hasEaten = true;
             snacked();
-        } else if (stage === 2 && kitchenChoice === 3 && roll <=5) { // kitchen - sushi
+        } else if (stage === 3 && kitchenChoice === 3 && roll <=5) { // kitchen - sushi
             user.currentHP = 0;
             user.alive = false;
             gameText.innerText = "Game Over: That sushi wasn't from last night... that sushi was from last WEEK! Death."
-        } else if (stage === 2 && kitchenChoice === 3 && roll >= 6 && roll <= 15) {
+        } else if (stage === 3 && kitchenChoice === 3 && roll >= 6 && roll <= 15) {
             gameText.innerText = "You ate your sushi but it smelled just a little off..."
-            stageThree();
-        } else if (stage === 2 && kitchenChoice === 0 && roll >= 16) {
+            stageFour();
+        } else if (stage === 3 && kitchenChoice === 0 && roll >= 16) {
             user.hasEaten = true;
             snacked();
         };
@@ -208,8 +218,8 @@ function outcome() {
     displayPlayerInfo();
 };
 
-function stageOne() {
-    stage = 1;
+function stageTwo() {
+    stage = 2;
     hallway.style.display = 'none';
     stairs.style.display = 'inline';
     
@@ -217,8 +227,8 @@ function stageOne() {
     stairsOverBtn.style.display = 'inline';
 };
 
-function stageTwo() {
-    stage = 2;
+function stageThree() {
+    stage = 3;
     hallway.style.display = 'none';
     stairs.style.display = 'none';
     kitchen.style.display = 'inline';
@@ -229,8 +239,14 @@ function stageTwo() {
     sushiBtn.style.display = 'inline';
 };
 
-function stageThree() {
-    stage = 3;
+function stageThreeSmoked() {
+    burritoBtn.style.display = 'inline';
+    cerealBtn.style.display = 'inline';
+    sushiBtn.style.display = 'inline';
+};
+
+function stageFour() {
+    stage = 4;
     continueBtn.style.display = 'inline';
 };
 
@@ -245,14 +261,18 @@ function start() {
 
 // shoo cat
 function shoo() {
+    stage = 1;
     hallChoice = 1;
+    pathChosen = true;
     sneakButton.style.display = 'none';
     shooButton.style.display = 'none';
 };
 
 // sneak past roommates' rooms
 function sneak() {
+    stage = 1;
     hallChoice = 0;
+    pathChosen = true;
     sneakButton.style.display = 'none';
     shooButton.style.display = 'none';
 };
@@ -260,6 +280,7 @@ function sneak() {
 // walk around cat
 function downAround() {
     stairsChoice = 0;
+    pathChosen = true;
     stairsAroundBtn.style.display = 'none';
     stairsOverBtn.style.display = 'none';
 };
@@ -267,6 +288,7 @@ function downAround() {
 // step over cat
 function downOver() {
     stairsChoice = 1;
+    pathChosen = true;
     stairsAroundBtn.style.display = 'none';
     stairsOverBtn.style.display = 'none';
 };
@@ -274,6 +296,7 @@ function downOver() {
 // choose to smoke first
 function chooseSmoke() {
     kitchenChoice = 0;
+    pathChosen = true;
     smokeBtn.style.display = 'none';
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
@@ -283,6 +306,7 @@ function chooseSmoke() {
 // choose microwave burrito
 function chooseBurrito() {
     kitchenChoice = 1;
+    pathChosen = true;
     smokeBtn.style.display = 'none';
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
@@ -291,6 +315,7 @@ function chooseBurrito() {
 
 function chooseCereal() {
     kitchenChoice = 2;
+    pathChosen = true;
     smokeBtn.style.display = 'none';
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
@@ -299,6 +324,7 @@ function chooseCereal() {
 
 function chooseSushi() {
     kitchenChoice = 3;
+    pathChosen = true;
     smokeBtn.style.display = 'none';
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
@@ -338,6 +364,8 @@ function resetGame() {
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
     sushiBtn.style.display = 'none';
+    
+    pathChosen = false;
 
     hallway.style.display = 'inline';
     stairs.style.display = 'none';
