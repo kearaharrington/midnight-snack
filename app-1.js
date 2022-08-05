@@ -240,7 +240,7 @@ function start() {
     sneakButton.style.display = 'inline';
     shooButton.style.display = 'inline';
     startButton.style.display = 'none';
-    resetButton.style.display = 'block';
+    resetButton.style.display = 'inline';
 };
 
 // shoo cat
@@ -328,7 +328,7 @@ function snacked() {
 function resetGame() {
     gameText.innerText = "It's midnight, you're still up, and you want a midnight snack... don't wake up your roommates!";
     
-    startButton.style.display = 'block';
+    startButton.style.display = 'inline';
     resetButton.style.display = 'none';
     sneakButton.style.display = 'none';
     shooButton.style.display = 'none';

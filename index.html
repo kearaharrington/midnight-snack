@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Mouse+Memoirs&display=swap" rel="stylesheet">
     <title>Midnight Snack</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +16,6 @@
             <h1>Midnight Snack</h1>
         </div>
         <div id="game-area">
-            <!-- <canvas id="canvas"></canvas> -->
             <div class="game-visuals" id="background-image">
                 <img id="hallway" src="hallway-placeholder.png" style="display: inline;">
                 <img id="stairs" src="stairs-placeholder.png" style="display: none;">
@@ -22,33 +24,32 @@
             <div class="game-visuals" id="journey-info">
                 <p id="journey-message">It's midnight, you're still up, and you want a midnight snack... don't wake up your roommates!</p>
                 <div id="game-buttons">
-                    <button id="sneak" style="display: none;">sneak past the bedrooms</button>
-                    <button id="shoo" style="display: none;">shoo the cat</button>
-                    <button id="downstairs-around" style="display: none;">walk around the cat</button>
-                    <button id="downstairs-over" style="display: none;">step over the cat</button>
-                    <button id="smoke" style="display: none;">smoke first</button>
-                    <button id="burrito" style="display: none;">microwave burrito</button>
-                    <button id="cereal" style="display: none;">cereal</button>
-                    <button id="sushi" style="display: none;">leftover sushi</button>
-                    <button id="continue" style="display: none;">continue</button>
+                    <button class="game-btn" id="sneak" style="display: none;">sneak past the bedrooms</button>
+                    <button class="game-btn" id="shoo" style="display: none;">shoo the cat</button>
+                    <button class="game-btn" id="downstairs-around" style="display: none;">walk around the cat</button>
+                    <button class="game-btn" id="downstairs-over" style="display: none;">step over the cat</button>
+                    <button class="game-btn" id="smoke" style="display: none;">smoke first</button>
+                    <button class="game-btn" id="burrito" style="display: none;">microwave burrito</button>
+                    <button class="game-btn" id="cereal" style="display: none;">cereal</button>
+                    <button class="game-btn" id="sushi" style="display: none;">leftover sushi</button>
+                    <button class="game-btn" id="continue" style="display: none;">continue</button>
                 </div>
             </div>
         </div>
         <div id="player-info">
-            <!-- <img id="sprite-sheet" src="character-two.png" style="display: none;"> -->
             <p id="life"></p>
             <p id="hp"></p>
             <p id="stealth"></p>
             <p id="eaten"></p>
         </div>
         <div id="start-reset-buttons">
-            <button id="start-button" style="display: block;">Start</button> <br>
-            <button id="reset-button" style="display: none;">Reset</button>
+            <button class="menu-btn" id="start-button" style="display: inline;">Start</button> <br>
+            <button class="menu-btn" id="reset-button" style="display: none;">Reset</button>
         </div>
         <div id="roll">
             <div class="button" id="die">
                 <p id="number">1</p>
-                <button id="die-button">Roll</button>
+                <button class="menu-btn" id="die-button">Roll</button>
             </div>
         </div>
     </div>

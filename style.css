@@ -1,11 +1,13 @@
 #container {
-    outline: 1px solid black;
-    max-width: 500px;
+    border: 10px solid black;
+    border-radius: 8px;
+    /* background-color: black; */
+    max-width: 510px;
     margin: 0 auto;
     padding: 5px;
     display: grid;
-    grid-gap: 0;
-    grid-template-rows: 60px 305px 150px;
+    grid-gap: 0px;
+    grid-template-rows: 125px 305px 150px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "title title title"
                         "game-area game-area game-area"
@@ -17,17 +19,14 @@
     height: 300px;
     width: 500px;
     grid-area: game-area;
-}
-
-#canvas {
-    height: 100%;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: white; */
 }
 
 #background-image {
     position: absolute;
-    bottom: 0;
-    left: 0;
     z-index: 0;
 }
 
@@ -35,30 +34,66 @@
     position: absolute;
     top: 0;
     left: 0;
+    position: relative;
+    color: white;
+    z-index: 10;
+}
+
+#game-buttons {
+    text-align: center;
 }
 
 #title {
     text-align: center;
     grid-area: title;
-}
-
-#journey-info {
-    position: absolute;
-    color: white;
-    z-index: 10;
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 32px;
+    /* background-color: white; */
 }
 
 #player-info {
     grid-area: player-info;
+    /* background-color: white; */
 }
 
 #start-reset-buttons {
     text-align: center;
-    /* align-self: flex-end; */
+    margin: auto;
     grid-area: start-reset;
+    /* background-color: white; */
 }
 
 #roll {
     text-align: center;
     grid-area: roll;
+    /* background-color: white; */
+}
+
+.game-btn {
+    padding: 5px 12px;
+    background-color: #DFA200;
+    color: white;
+    border-radius: 6px;
+}
+
+.menu-btn {
+    color: white;
+    background-color: #5C21AD;
+    padding: 8px 22px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+#journey-message {
+    font-family: 'Barlow', sans-serif;
+    margin: 5%;
+}
+
+#player-info {
+    font-family: 'Barlow', sans-serif;
+}
+
+#number {
+    font-family: 'Barlow', sans-serif;
+    font-weight: bold;
 }
