@@ -1,6 +1,6 @@
 # midnight-snack
 
-## Game Description
+## Game Description:
 The premise of this game is that the player up late and hungry and 
 wants a midnight night, but they don't have any groceries. They must
 make it through the hallway, down the stairs, and into the kitchen 
@@ -15,7 +15,7 @@ Possible outcomes include tripping over the roommates' cat Josephine,
 falling down the stairs, setting the house on fire, or choking to death
 on a spoonfull of cereal.
 
-## Credits
+## Credits:
 Environment art by Naomi Kurihara.
 Text edited by Emmanuel Marcant.
 
@@ -27,10 +27,12 @@ function needs to be fixed.
 2. The game is not optimized for mobile.
 3. Would like to add a dice roll animation.
 
-First draft of possible actions:
+## Drafts of Possible Actions:
 ![plot](Untitled-2022-07-23-1653.png)
+![plot](gameNotesPage1.jpeg)
+![plot](gameNotesPage2.jpeg)
 
-## Javascript
+## Javascript Functions:
 | Function  | Description |
 | --------- | ----------- |
 | `displayPlayerInfo()` | Very literal - displays the player information. I had created a player class rather than using an object so that down the line I might be able to expand the game to include more than one player, or to involve a sprite animation moving across a canvas with the choices popping up as you move into set areas on the map. |
