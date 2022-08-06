@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: linear-gradient(#DFA200, #5C21AD);
+    background-image: linear-gradient(#DFA200, #5C21AD, #DFA200);
 }
 
 #container {
@@ -36,8 +36,8 @@ body {
 #background-image {
     position: absolute;
     z-index: 0;
-    height: 100%;
-    width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 #journey-info {
@@ -75,6 +75,7 @@ body {
 
 #roll {
     text-align: center;
+    margin: auto;
     grid-area: roll;
     /* background-color: white; */
 }
@@ -113,9 +114,15 @@ body {
     position: relative;
 }
 
-.map-area {
-    /* width: 540px; */
-    margin: auto;
+#map-area {
+    width: 540px;
+    /* margin: 0 auto; */
+    position: relative;
+    display: grid;
+    justify-content: center;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-template-columns: 540px;
+    grid-template-areas: "position"
 }
 
 #map {
@@ -123,6 +130,7 @@ body {
     height: auto;
     margin: 10px auto;
     z-index: 0;
+    position: absolute;
 }
 
 #position {
@@ -131,4 +139,5 @@ body {
     background: greenyellow;
     position: absolute;
     z-index: 2;
+    grid-area: position;
 }

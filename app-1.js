@@ -56,7 +56,7 @@ burritoBtn.addEventListener('click', chooseBurrito);
 cerealBtn.addEventListener('click', chooseCereal);
 sushiBtn.addEventListener('click', chooseSushi);
 
-continueBtn.addEventListener('click', ohNo);
+continueBtn.addEventListener('click', continueOption);
 
 // ====================== ENTITIES ======================= //
 class Player {
@@ -127,66 +127,69 @@ function outcome() {
         // hall options
         if (stage === 1 && hallChoice === 0 && roll <= 5) {
             user.currentHP = 0;
-            gameText.innerText = "Game Over: Swarmed by drunk roommates, you can't make it to the kitchen"
+            user.alive = false;
+            gameText.innerText = "Game Over: Your eyes haven't yet adjusted to the dark hallway when your foot catches on something light but unstable. In a freak accident, you try to catch yourself but it's to no avail. Contorted into a pile of limbs you've managed to break your neck. The only snacking you'll be doing is in the afterlife..."
         } else if (stage === 1 && hallChoice === 0 && roll >= 6 && roll <= 15) {
             user.stealth -= 25;
-            gameText.innerText = "You trip and make a thumping sound. You think you hear a noise coming from behind one of the bedroom doors but you remain alone in the hallway."
+            gameText.innerText = "You trip and make a thumping sound. You think you hear a noise coming from behind one of the bedroom doors but you remain alone in the hallway..."
             stageTwo();
         } else if (stage === 1 && hallChoice === 0 && roll >= 16) {
-            gameText.innerText = "You pass by the bedrooms without making a single sound. Your roommates are still snoozing."
+            gameText.innerText = "You pass by the bedrooms without making a single sound. No sign of your roommates thus far..."
             stageTwo();
         } else if (stage === 1 && hallChoice === 1 && roll <= 5) {
             user.currentHP -= 25;
-            gameText.innerText = "You stumble over your cat and fall down as it runs for the stairs. You think you hear a rustling coming from one of the bedrooms but no one comes out."
+            user.stealth -= 25;
+            gameText.innerText = "Josephine hisses, startling you and you stumble backwards and falling as she runs for the stairs. You think you hear a rustling coming from one of the bedrooms but no one comes out..."
             stageTwo();
         } else if (stage === 1 && hallChoice === 1 && roll >= 6 && roll <= 15) {
             user.stealth -= 25;
-            gameText.innerText = "You scare your cat and it jumps up, runs for the stairs, slides on the rug that you never put a non-slip pad under, and smacks headfirst into the wall."
+            gameText.innerText = "You scare Josephine and she jumps up, runs for the stairs, slides on the rug that you never put a non-slip pad under, and smacks headfirst into the wall..."
             stageTwo();
         } else if (stage === 1 && hallChoice === 1 && roll >= 16) {
-            gameText.innerText = "Your cat pads away and you quietly make it over to the top of the stairs."
+            gameText.innerText = "Josephine pads away and you quietly make it over to the top of the stairs..."
             stageTwo();
         } else if (stage === 2 && stairsChoice === 0 && roll <= 5) { // stairs options
             user.currentHP = 0;
             user.alive = false;
-            gameText.innerText = "Game Over: You tripped over your cat and fell down the stairs!!";
+            gameText.innerText = "Game Over: You spook Josephine and it pounces on your legs, scratching and biting. You can't maintain your balance! You trip and tumble down the stairs to your death."
         } else if (stage === 2 && stairsChoice === 0 && roll >= 6 && roll <= 15) {
             user.currentHP -= 25;
             user.stealth -= 25;
-            gameText.innerText = "You move around your cat and overshoot the next step, stumbling down the stairs."
+            gameText.innerText = "You move around Josephine and overshoot the next step, tumbling downward you manage to catch yourself on the banister and head into the kitchen... now let's see what forbidden delights await you..."
             stageThree();
         } else if (stage === 2 && stairsChoice === 0 && roll >= 16) {
-            gameText.innerText = "You make it down the stairs and head towards the kitchen."
+            gameText.innerText = "You make it down the stairs and head towards the kitchen... You peer into the fridge taking stock of your roommates' food... maybe you should smoke first..."
             stageThree();
         } else if (stage === 2 && stairsChoice === 1 && roll <= 5) {
             user.currentHP = 0;
             user.alive = false;
-            gameText.innerText = "Game Over: You spook your cat and it pounces on your legs, scratching and biting. You can't maintain your balance! You trip and tumble down the stairs to your death."
+            gameText.innerText = "Game Over: You tripped over Josephine and fell down the stairs.";
         } else if (stage === 2 && stairsChoice === 1 && roll >= 6 && roll <= 15) {
             user.currentHP -= 25;
             user.stealth -= 25;
-            gameText.innerText = "You spook your cat and it pounces on your legs, scratching and biting. You can't maintain your balance! You yelp as you trip but you manage not to fall."
+            gameText.innerText = "You spook Josephine and she pounces on your legs, scratching and biting. You can't maintain your balance! You yelp as you trip but you manage not to fall. Peering into the fridge you take stock of your roommates' food... maybe you should smoke first..."
             stageThree();
         } else if (stage === 2 && stairsChoice === 1 && roll >= 16) {
-            gameText.innerText = "You make it down the stairs and head towards the kitchen"
+            gameText.innerText = "You make it down the stairs and head towards the kitchen... now let's see what forbidden delights await you..."
             stageThree();
         } else if (stage === 3 && kitchenChoice === 0 && roll <=5) { // kitchen - smoke first
             user.currentHP = 0;
             user.alive = false;
-            gameText.innerText = "Game Over: You've set your house on fire! No snack! And you're dead!"
+            gameText.innerText = "Game Over: Attempting to smoke out the window, you light up...... the curtains! You panic and slip, knocking your head on the counter and passing out. Congratulations, you've killed everyone... and the cat."
         } else if (stage === 3 && kitchenChoice === 0 && roll >= 6 && roll <= 15) {
-            gameText.innerText = "Game Over: You fell asleep petting your cat and giving it treats. You forgot you came to the kitchen for your own snack."
+            gameText.innerText = "Game Over: Shit... you've been staring at the closed fridge for who knows how long when you realize you're too high for this. You head back to your room in defeat."
+            // gameText.innerText = "You fell asleep petting Josephine and giving it treats. You forgot you came to the kitchen for your own snack."
         } else if (stage === 3 && kitchenChoice === 0 && roll >= 16) {
             user.currentHP = 100;
-            gameText.innerText = "Ok ok ok, back to choosing your snack..."
+            gameText.innerText = "Just the right amount of toasty, you're ready to eat..."
             stageThreeSmoked();
         } else if (stage === 3 && kitchenChoice === 1 && roll <=5) { // kitchen - microwave burrito
             user.currentHP = 0;
             user.alive = false;
-            gameText.innerText = "Game Over: You left the foil on! The entire house exploded!"
+            gameText.innerText = "Game Over: What's that crackling sound you hear? You're not making popcorn. You left the foil on! The entire house explodes! Plans foiled."
         } else if (stage === 3 && kitchenChoice === 1 && roll >= 6 && roll <= 15) {
             user.currentHP -= 15;
-            gameText.innerText = "Aww you burnt the burrito... still good though"
+            gameText.innerText = "Distracted by your phone, you realize too late you've pressed an extra zero. Aww you burnt the burrito... still good though..."
             stageFour();
         } else if (stage === 3 && kitchenChoice === 1 && roll >= 16) {
             user.hasEaten = true;
@@ -194,7 +197,7 @@ function outcome() {
         } else if (stage === 3 && kitchenChoice === 2 && roll <=5) { // kitchen - cereal
             user.currentHP = 0;
             user.alive = false;
-            gameText.innerText = "Game Over: You eat so fast you choke on your cereal. Death."
+            gameText.innerText = "Game Over: Josephine startles you and you take a sharp inhale as you're attempting to swallow your first bite of cereal. You can't catch your breath. The room goes dark... Josephine's a cereal killer."
         } else if (stage === 3 && kitchenChoice === 2 && roll >= 6 && roll <= 15) {
             user.stealth -= 50;
             gameText.innerText = "Uh oh! You drop the cereal bowl and it shatters, little pieces clattering all over the floor..."
@@ -205,7 +208,7 @@ function outcome() {
         } else if (stage === 3 && kitchenChoice === 3 && roll <=5) { // kitchen - sushi
             user.currentHP = 0;
             user.alive = false;
-            gameText.innerText = "Game Over: That sushi wasn't from last night... that sushi was from last WEEK! Death."
+            gameText.innerText = "Game Over: That sushi wasn't from last night... that sushi was from last MONTH! Death."
         } else if (stage === 3 && kitchenChoice === 3 && roll >= 6 && roll <= 15) {
             gameText.innerText = "You ate your sushi but it smelled just a little off..."
             stageFour();
@@ -332,9 +335,9 @@ function chooseSushi() {
 };
 
 // kids ate snacks
-function ohNo() {
+function continueOption() {
     if (player1.stealth <=25) {
-        gameText.innerText = 'Your roommates beat you to the kitchen! All the snacks are gone!'
+        gameText.innerText = "You've made so much noise you've attracted the attention of your roommates. In an effort to conceal your true purpose, you reach for the one thing you have in the kitchen... a bottle of tequila. You start pouring shots. You pass out before you manage to sneak a snack."
     } else {
         player1.hasEaten = true;
         snacked();
@@ -345,14 +348,14 @@ function ohNo() {
 // you ate snack
 function snacked() {
     if (player1.hasEaten) {
-        gameText.innerText = 'success! you got your snack!'
-        eat.innerText = 'Status: Happy and sleeeeepy'
+        gameText.innerText = "Belly full, eyes getting sleepy, you head back to your room. Another wonderful midnight snack courtesy of your roommates."
+        eat.innerText = 'Status: Hunger Sated'
     }
 };
 
 // reset back to start
 function resetGame() {
-    gameText.innerText = "It's midnight, you're still up, and you want a midnight snack... don't wake up your roommates!";
+    gameText.innerText = "It's midnight... you're still up... and what's that? You hear a rumbling! But that's not the monster in your closet nor under your bed... it's your monstrous appetite and you need a snack. Too bad you haven't gotten groceries in weeks. Better not disturb your roommates or their cat, Josephine...";
     
     startButton.style.display = 'inline';
     resetButton.style.display = 'none';
