@@ -134,7 +134,9 @@ body {
 #player-position {
     width: 10px;
     height: 10px;
-    background: greenyellow;
+    background: rgb(119, 178, 31);
     position: absolute;
     z-index: 10;
+    top: 160px;
+    left: 85px;
 }

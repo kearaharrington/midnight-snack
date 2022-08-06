@@ -19,6 +19,7 @@ const sushiBtn = document.getElementById('sushi');
 const continueBtn = document.getElementById('continue');
 
 const playerInfo = document.getElementById('player-info');
+const playerPosition = document.getElementById('player-position');
 
 const hallway = document.getElementById('hallway');
 const stairs = document.getElementById('stairs');
@@ -229,6 +230,8 @@ function stageTwo() {
     
     stairsAroundBtn.style.display = 'inline';
     stairsOverBtn.style.display = 'inline';
+
+    playerPosition.style.marginLeft = '255px';
 };
 
 function stageThree() {
@@ -241,6 +244,9 @@ function stageThree() {
     burritoBtn.style.display = 'inline';
     cerealBtn.style.display = 'inline';
     sushiBtn.style.display = 'inline';
+
+    playerPosition.style.marginTop = '-85px';
+    playerPosition.style.marginLeft = '300px';
 };
 
 function stageThreeSmoked() {
@@ -261,6 +267,7 @@ function start() {
     shooButton.style.display = 'inline';
     startButton.style.display = 'none';
     resetButton.style.display = 'inline';
+    playerPosition.style.marginLeft = "150px";
 };
 
 // shoo cat
@@ -394,6 +401,9 @@ function resetGame() {
     player1.stealth = 100;
     player1.hasEaten = false;
     player1.alive = true;
+
+    playerPosition.style.marginTop = '160px';
+    playerPosition.style.marginLeft = '85px';
 
     displayPlayerInfo();
 };
