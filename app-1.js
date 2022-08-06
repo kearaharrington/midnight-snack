@@ -75,17 +75,9 @@ let player1 = new Player();
 
 // Function to show player stats on page
 function displayPlayerInfo() {
-    let life = document.getElementById('life');
     life.innerText = `Alive: ${player1.alive}`;
-
-    let hp = document.getElementById('hp');
     hp.innerText = `HP: ${player1.currentHP}`;
-    
-    let stealth = document.getElementById('stealth');
     stealth.innerText = `Stealth: ${player1.stealth}`;
-
-    let eat = document.getElementById('eaten');
-    eat.innerText = 'Status: Still hungry...'
 };
 
 displayPlayerInfo();
