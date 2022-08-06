@@ -15,7 +15,7 @@ body {
     padding: 5px;
     display: grid;
     grid-gap: 0px;
-    grid-template-rows: 125px 305px 150px;
+    grid-template-rows: 125px 305px 200px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "title title title"
                         "game-area game-area game-area"
@@ -36,6 +36,8 @@ body {
 #background-image {
     position: absolute;
     z-index: 0;
+    height: 100%;
+    width: 100%;
 }
 
 #journey-info {
@@ -104,4 +106,29 @@ body {
 #number {
     font-family: 'Barlow', sans-serif;
     font-weight: bold;
+}
+
+#please-work {
+    width: 540px;
+    position: relative;
+}
+
+.map-area {
+    /* width: 540px; */
+    margin: auto;
+}
+
+#map {
+    width: 510px;
+    height: auto;
+    margin: 10px auto;
+    z-index: 0;
+}
+
+#position {
+    width: 10px;
+    height: 10px;
+    background: greenyellow;
+    position: absolute;
+    z-index: 2;
 }
