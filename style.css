@@ -9,13 +9,14 @@ body {
 #container {
     border: 10px solid black;
     border-radius: 8px;
-    /* background-color: black; */
     max-width: 510px;
+    height: auto;
     margin: 0 auto;
     padding: 5px;
     display: grid;
     grid-gap: 0px;
-    grid-template-rows: 125px 305px 200px;
+    /* grid-template-rows: 125px 305px 200px; */
+    grid-template-rows: 20% 52% 33%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "title title title"
                         "game-area game-area game-area"
@@ -30,7 +31,6 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* background-color: white; */
 }
 
 #background-image {
@@ -58,26 +58,22 @@ body {
     grid-area: title;
     font-family: 'Mouse Memoirs', sans-serif;
     font-size: 32px;
-    /* background-color: white; */
 }
 
 #player-info {
     grid-area: player-info;
-    /* background-color: white; */
 }
 
 #start-reset-buttons {
     text-align: center;
     margin: auto;
     grid-area: start-reset;
-    /* background-color: white; */
 }
 
 #roll {
     text-align: center;
     margin: auto;
     grid-area: roll;
-    /* background-color: white; */
 }
 
 .game-btn {
@@ -110,34 +106,34 @@ body {
 }
 
 #please-work {
-    width: 540px;
+    max-width: 540px;
+    height: 220px;
     position: relative;
+    grid-area: map-container
 }
 
 #map-area {
-    width: 540px;
-    /* margin: 0 auto; */
+    max-width: 510px;
+    max-height: 300px;
+    margin: 10px auto;
     position: relative;
     display: grid;
     justify-content: center;
     grid-auto-rows: minmax(min-content, max-content);
-    grid-template-columns: 540px;
-    grid-template-areas: "position"
+    grid-template-columns: 100%;
+    grid-template-areas: "map-container"
 }
 
 #map {
-    width: 510px;
-    height: auto;
-    margin: 10px auto;
-    z-index: 0;
+    max-width: 510px;
     position: absolute;
+    z-index: 0;
 }
 
-#position {
+#player-position {
     width: 10px;
     height: 10px;
     background: greenyellow;
     position: absolute;
-    z-index: 2;
-    grid-area: position;
+    z-index: 10;
 }
