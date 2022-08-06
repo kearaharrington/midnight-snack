@@ -109,7 +109,7 @@ function newButton(theButtonId, buttonCreate) {
 // roll 20 sided die
 function rollDie() {
     rollResult = 1 + Math.floor(Math.random() * 20);
-    rollDisplay.textContent = rollResult;
+    rollDisplay.textContent = `You rolled ${rollResult}`;
     return rollResult;
 };
 
@@ -119,6 +119,7 @@ function rollOk() {
         outcome();
         pathChosen = false;
     };
+    rollButton.style.display = 'none';
 }
 
 function outcome() {
@@ -269,6 +270,7 @@ function shoo() {
     pathChosen = true;
     sneakButton.style.display = 'none';
     shooButton.style.display = 'none';
+    rollButton.style.display = 'inline';
 };
 
 // sneak past roommates' rooms
@@ -278,6 +280,7 @@ function sneak() {
     pathChosen = true;
     sneakButton.style.display = 'none';
     shooButton.style.display = 'none';
+    rollButton.style.display = 'inline';
 };
 
 // walk around cat
@@ -286,6 +289,7 @@ function downAround() {
     pathChosen = true;
     stairsAroundBtn.style.display = 'none';
     stairsOverBtn.style.display = 'none';
+    rollButton.style.display = 'inline';
 };
 
 // step over cat
@@ -294,6 +298,7 @@ function downOver() {
     pathChosen = true;
     stairsAroundBtn.style.display = 'none';
     stairsOverBtn.style.display = 'none';
+    rollButton.style.display = 'inline';
 };
 
 // choose to smoke first
@@ -304,6 +309,7 @@ function chooseSmoke() {
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
     sushiBtn.style.display = 'none';
+    rollButton.style.display = 'inline';
 };
 
 // choose microwave burrito
@@ -314,6 +320,7 @@ function chooseBurrito() {
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
     sushiBtn.style.display = 'none';
+    rollButton.style.display = 'inline';
 };
 
 function chooseCereal() {
@@ -323,6 +330,7 @@ function chooseCereal() {
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
     sushiBtn.style.display = 'none';
+    rollButton.style.display = 'inline';
 };
 
 function chooseSushi() {
@@ -332,6 +340,7 @@ function chooseSushi() {
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
     sushiBtn.style.display = 'none';
+    rollButton.style.display = 'inline';
 };
 
 // kids ate snacks
@@ -343,6 +352,7 @@ function continueOption() {
         snacked();
     };
     continueBtn.style.display = 'none';
+    // rollButton.style.display = 'inline';
 };
 
 // you ate snack
@@ -367,6 +377,8 @@ function resetGame() {
     burritoBtn.style.display = 'none';
     cerealBtn.style.display = 'none';
     sushiBtn.style.display = 'none';
+    continueBtn.style.display = 'none';
+    rollButton.style.display = 'none';
     
     pathChosen = false;
 
@@ -374,7 +386,7 @@ function resetGame() {
     stairs.style.display = 'none';
     kitchen.style.display = 'none';
 
-    rollDisplay.innerText = '1';
+    rollDisplay.innerText = '';
 
     player1.maxHP = 100;
     player1.currentHP = 100;
