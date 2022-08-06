@@ -15,6 +15,10 @@ Possible outcomes include tripping over the roommates' cat Josephine,
 falling down the stairs, setting the house on fire, or choking to death
 on a spoonfull of cereal.
 
+## Credits
+Environment art by Naomi Kurihara.
+Text edited by Emmanuel Marcant.
+
 ## Future Improvements:
 1. There is a map on the bottom of the screen that shows where the 
 player's current location is. At this point, the reset function does 
