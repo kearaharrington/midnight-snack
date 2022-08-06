@@ -577,150 +577,72 @@ body {
 
 ```
 
-```html
+`````html
 
-html {
-    height: 100%;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Mouse+Memoirs&display=swap" rel="stylesheet">
+    <title>Midnight Snack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="title">
+            <h1>Midnight Snack</h1>
+        </div>
+        <div id="game-area">
+            <div class="game-visuals" id="background-image">
+                <img id="hallway" src="Hallway.jpg" style="display: inline;">
+                <img id="stairs" src="Stairs.jpg" style="display: none;">
+                <img id="kitchen" src="Kitchen.jpg" style="display: none;">
+            </div>
+            <div class="game-visuals" id="journey-info">
+                <p id="journey-message">It's midnight... you're still up... and what's that? You hear a rumbling! But that's not the monster in your closet nor under your bed... it's your monstrous appetite and you need a snack. Too bad you haven't gotten groceries in weeks. Better not disturb your roommates or their cat, Josephine...</p>
+                <div id="game-buttons">
+                    <button class="game-btn" id="sneak" style="display: none;">sneak past the bedrooms</button>
+                    <button class="game-btn" id="shoo" style="display: none;">shoo the cat</button>
+                    <button class="game-btn" id="downstairs-around" style="display: none;">walk around the cat</button>
+                    <button class="game-btn" id="downstairs-over" style="display: none;">step over the cat</button>
+                    <button class="game-btn" id="smoke" style="display: none;">smoke first</button>
+                    <button class="game-btn" id="burrito" style="display: none;">microwave burrito</button>
+                    <button class="game-btn" id="cereal" style="display: none;">cereal</button>
+                    <button class="game-btn" id="sushi" style="display: none;">leftover sushi</button>
+                    <button class="game-btn" id="continue" style="display: none;">continue</button>
+                    <button class="game-btn" id="die-button" style="display: none;">Roll</button>
 
-body {
-    background-image: linear-gradient(#DFA200, #5C21AD, #DFA200);
-}
-
-#container {
-    border: 10px solid black;
-    border-radius: 8px;
-    max-width: 510px;
-    height: auto;
-    margin: 0 auto;
-    padding: 5px;
-    display: grid;
-    grid-gap: 0px;
-    /* grid-template-rows: 125px 305px 200px; */
-    grid-template-rows: 20% 52% 33%;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "title title title"
-                        "game-area game-area game-area"
-                        "start-reset player-info roll"
-}
-
-#game-area {
-    position: relative;
-    height: 300px;
-    width: 500px;
-    grid-area: game-area;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#background-image {
-    position: absolute;
-    z-index: 0;
-    max-width: 100%;
-    height: auto;
-}
-
-#journey-info {
-    position: absolute;
-    top: 0;
-    left: 0;
-    position: relative;
-    color: white;
-    z-index: 10;
-}
-
-#game-buttons {
-    text-align: center;
-}
-
-#title {
-    text-align: center;
-    grid-area: title;
-    font-family: 'Mouse Memoirs', sans-serif;
-    font-size: 32px;
-}
-
-#player-info {
-    grid-area: player-info;
-}
-
-#start-reset-buttons {
-    text-align: center;
-    margin: auto;
-    grid-area: start-reset;
-}
-
-#roll {
-    text-align: center;
-    margin: auto;
-    grid-area: roll;
-}
-
-.game-btn {
-    padding: 5px 12px;
-    background-color: #DFA200;
-    color: white;
-    border-radius: 6px;
-}
-
-.menu-btn {
-    color: white;
-    background-color: #5C21AD;
-    padding: 8px 22px;
-    font-size: 16px;
-    border-radius: 8px;
-}
-
-#journey-message {
-    font-family: 'Barlow', sans-serif;
-    margin: 5%;
-}
-
-#player-info {
-    font-family: 'Barlow', sans-serif;
-}
-
-#number {
-    font-family: 'Barlow', sans-serif;
-    font-weight: bold;
-    font-size: large;
-}
-
-#please-work {
-    max-width: 540px;
-    height: 220px;
-    position: relative;
-    grid-area: map-container
-}
-
-#map-area {
-    max-width: 510px;
-    max-height: 300px;
-    margin: 10px auto;
-    position: relative;
-    display: grid;
-    justify-content: center;
-    grid-auto-rows: minmax(min-content, max-content);
-    grid-template-columns: 100%;
-    grid-template-areas: "map-container"
-}
-
-#map {
-    max-width: 510px;
-    position: absolute;
-    z-index: 0;
-}
-
-#player-position {
-    width: 10px;
-    height: 10px;
-    background: rgb(119, 178, 31);
-    position: absolute;
-    z-index: 10;
-    top: 160px;
-    left: 85px;
-}
+                </div>
+            </div>
+        </div>
+        <div id="player-info">
+            <p id="life"></p>
+            <p id="hp"></p>
+            <p id="stealth"></p>
+            <p id="eaten">Status: Still hungry...</p>
+        </div>
+        <div id="start-reset-buttons">
+            <button class="menu-btn" id="start-button" style="display: inline;">Start</button> <br>
+            <button class="menu-btn" id="reset-button" style="display: none;">Reset</button>
+        </div>
+        <div id="roll">
+            <p id="number"></p>
+        </div>
+    </div>
+    <div id="map-area">
+        <p id="please-work">
+            <div id="player-position"></div>
+            <img id="map" src="map.png" style="display: block;">
+        </p>
+    </div>
+    <script src="app-1.js"></script>
+</body>
+</html>
 
 ```
 
