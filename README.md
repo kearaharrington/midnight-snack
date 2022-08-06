@@ -15,6 +15,17 @@ Possible outcomes include tripping over the roommates' cat Josephine,
 falling down the stairs, setting the house on fire, or choking to death
 on a spoonfull of cereal.
 
+## Future Improvements:
+1. There is a map on the bottom of the screen that shows where the 
+player's current location is. At this point, the reset function does 
+not restore the player marker back to its original position, and that
+function needs to be fixed.
+2. The game is not optimized for mobile.
+3. Would like to add a dice roll animation.
+
+First draft of possible actions:
+![plot](Untitled-2022-07-23-1653.png)
+
 ## Javascript
 | Function  | Description |
 | --------- | ----------- |
@@ -645,14 +656,3 @@ body {
 </html>
 
 ```
-
-## Future Improvements:
-1. There is a map on the bottom of the screen that shows where the 
-player's current location is. At this point, the reset function does 
-not restore the player marker back to its original position, and that
-function needs to be fixed.
-2. The game is not optimized for mobile.
-3. Would like to add a dice roll animation.
-
-First draft of possible actions:
-![plot](Untitled-2022-07-23-1653.png)
