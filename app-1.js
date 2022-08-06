@@ -84,21 +84,6 @@ displayPlayerInfo();
 
 // ====================== GAME PROCESSES ======================= //
 
-// remove existing buttons in the game-area div
-function removeButtons() {
-    if (journeyButtons.children.length > 0) {
-        journeyButtons.remove();
-    } 
-}
-
-// add new buttons
-
-function newButton(theButtonId, buttonCreate) {
-    if (!theButtonId) {
-    journeyButtons.appendChild(buttonCreate);
-    }
-}
-
 // roll 20 sided die
 function rollDie() {
     rollResult = 1 + Math.floor(Math.random() * 20);
@@ -113,7 +98,7 @@ function rollOk() {
         pathChosen = false;
     };
     rollButton.style.display = 'none';
-}
+};
 
 function outcome() {
     let roll = rollDie();
@@ -359,7 +344,7 @@ function snacked() {
     if (player1.hasEaten) {
         gameText.innerText = "Belly full, eyes getting sleepy, you head back to your room. Another wonderful midnight snack courtesy of your roommates."
         eat.innerText = 'Status: Hunger Sated'
-    }
+    };
 };
 
 // reset back to start
