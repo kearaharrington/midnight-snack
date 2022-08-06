@@ -350,7 +350,7 @@ function snacked() {
 // reset back to start
 function resetGame() {
     gameText.innerText = "It's midnight... you're still up... and what's that? You hear a rumbling! But that's not the monster in your closet nor under your bed... it's your monstrous appetite and you need a snack. Too bad you haven't gotten groceries in weeks. Better not disturb your roommates or their cat, Josephine...";
-    eat.innerText = "Status: Still hungry..."
+    eat.innerText = "Status: Still hungry...";
 
     startButton.style.display = 'inline';
     resetButton.style.display = 'none';
